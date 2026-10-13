@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PS Luxury Interiors</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+body{font-family:Georgia,'Times New Roman',serif;color:white;background:linear-gradient(rgba(0,0,0,.48),rgba(0,0,0,.48)),url("interior.jpg.png") center/cover fixed no-repeat;min-height:100vh}
+header{position:fixed;top:0;left:0;width:100%;height:82px;z-index:1000;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);border-bottom:1px solid #d4af37;display:flex;align-items:center;justify-content:space-between;padding:0 55px}
+.logo-area{display:flex;align-items:center;gap:14px}
+.logo-image{width:54px;height:54px;border-radius:50%;object-fit:cover;display:block;border:2px solid #d4af37;box-shadow:0 0 12px rgba(212,175,55,.35)}
+.logo-text{color:#d4af37;font-size:24px;letter-spacing:3px;font-weight:bold;white-space:nowrap}
+nav{display:flex;gap:32px}
+nav a{color:white;text-decoration:none;font-size:15px;letter-spacing:1px;transition:.3s}
+nav a:hover{color:#d4af37}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 20px 80px}
+.hero h1{color:#d4af37;font-size:65px;letter-spacing:5px;text-shadow:0 3px 20px rgba(0,0,0,.8);animation:heroIn 1s ease}
+.hero-line{width:120px;height:2px;background:#d4af37;margin:22px 0}
+.hero p{max-width:720px;font-size:20px;line-height:1.8;color:#f4f4f4}
+.hero-btn{margin-top:35px;padding:14px 35px;color:#111;background:#d4af37;border:none;border-radius:4px;font-size:15px;letter-spacing:2px;font-weight:bold;text-decoration:none;transition:.3s}
+.hero-btn:hover{transform:translateY(-4px);box-shadow:0 8px 25px rgba(212,175,55,.35)}
+section{padding:100px 8%}
+.section-title{text-align:center;margin-bottom:55px}
+.section-title h2{color:#d4af37;font-size:42px;letter-spacing:3px}
+.section-title p{margin-top:12px;color:#ddd;font-size:16px}
+.products-section{padding:75px 6% 100px;background:rgba(0,0,0,.32)}
+.products-intro{text-align:center;margin-bottom:45px}
+.products-intro h2{color:#d4af37;font-size:42px;letter-spacing:3px}
+.products-intro p{color:#ddd;margin-top:15px;font-size:17px;line-height:1.7}
+.product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:25px}
+.product-card{background:rgba(0,0,0,.78);border:1px solid rgba(212,175,55,.55);border-radius:10px;overflow:hidden;transition:.4s;display:flex;flex-direction:column}
+.product-card:hover{transform:translateY(-7px);border-color:#d4af37;box-shadow:0 12px 30px rgba(0,0,0,.45)}
+.product-card img{width:100%;height:220px;object-fit:cover;display:block;background:#222;transition:.4s}
+.product-card:hover img{transform:scale(1.04)}
+.product-image-wrap{overflow:hidden}
+.product-info{padding:22px 18px;text-align:center;display:flex;flex-direction:column;flex:1}
+.product-info h3{color:#d4af37;font-size:19px;letter-spacing:1px;margin-bottom:17px;line-height:1.5}
+.product-info ul{list-style:none;text-align:left;margin-bottom:20px;flex:1}
+.product-info li{color:#eee;font-size:14px;line-height:1.7;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.09)}
+.product-info li::before{content:"◆";color:#d4af37;font-size:9px;margin-right:9px}
+.product-btn{display:inline-block;padding:11px 14px;color:#d4af37;border:1px solid #d4af37;border-radius:4px;text-decoration:none;font-size:12px;letter-spacing:1px;transition:.3s;margin-top:auto}
+.product-btn:hover{background:#d4af37;color:#111}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.service-card{min-height:230px;background:rgba(0,0,0,.48);border:1px solid rgba(212,175,55,.55);border-radius:12px;padding:35px 25px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;cursor:pointer;transition:.45s;backdrop-filter:blur(5px)}
+.service-card:hover{transform:translateY(-10px);border-color:#d4af37;box-shadow:0 15px 35px rgba(0,0,0,.45)}
+.service-card h3{color:#d4af37;font-size:22px;letter-spacing:1px;margin-bottom:15px}
+.service-card p{color:#ddd;line-height:1.6}
+.view-service{margin-top:22px;padding:10px 20px;border:1px solid #d4af37;color:#d4af37;background:transparent;border-radius:4px;font-size:13px;letter-spacing:1px;transition:.3s}
+.service-card:hover .view-service{background:#d4af37;color:#111}
+.service-page{display:none;min-height:100vh;padding:125px 7% 80px;background:linear-gradient(rgba(0,0,0,.82),rgba(0,0,0,.82)),url("interior.jpg.png") center/cover fixed no-repeat}
+.service-page.active{display:block;animation:pageOpen .5s ease}
+.service-back{display:inline-block;padding:11px 22px;border:1px solid #d4af37;color:#d4af37;text-decoration:none;border-radius:4px;margin-bottom:40px;transition:.3s}
+.service-back:hover{background:#d4af37;color:#111}
+.service-content{max-width:1250px;margin:auto}
+.service-heading{text-align:center;margin-bottom:35px}
+.service-heading h2{color:#d4af37;font-size:50px;letter-spacing:3px}
+.service-heading p{max-width:800px;margin:20px auto 0;color:#ddd;font-size:18px;line-height:1.8}
+.service-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:50px}
+.service-gallery img{width:100%;height:370px;object-fit:cover;border-radius:10px;border:1px solid rgba(212,175,55,.65);transition:.45s}
+.service-gallery img:hover{transform:scale(1.025);border-color:#d4af37;box-shadow:0 15px 35px rgba(0,0,0,.5)}
+.about-box{max-width:1000px;margin:auto;background:rgba(0,0,0,.42);border:1px solid rgba(212,175,55,.5);border-radius:12px;padding:45px;text-align:center;backdrop-filter:blur(5px)}
+.about-box h2{color:#d4af37;margin-bottom:22px;font-size:38px}
+.about-box p{color:#ddd;font-size:17px;line-height:1.9}
+.contact-box{max-width:850px;margin:auto;text-align:center;background:rgba(0,0,0,.42);border:1px solid rgba(212,175,55,.5);border-radius:12px;padding:45px}
+.contact-box h2{color:#d4af37;font-size:38px;margin-bottom:25px}
+.contact-box p{margin:12px 0;color:#ddd;font-size:17px}
+.contact-box strong{color:#d4af37}
+footer{text-align:center;padding:25px;background:rgba(0,0,0,.82);border-top:1px solid rgba(212,175,55,.5);color:#aaa;font-size:14px}
+@keyframes heroIn{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pageOpen{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+#productDetailPage{display:none;position:fixed;inset:0;z-index:99999;overflow-y:auto;background:linear-gradient(135deg,#171717,#292720);color:#f7f3e9;padding:28px clamp(14px,4vw,50px) 50px}
+#productDetailPage.active{display:block}
+.product-detail-top{display:flex;justify-content:space-between;align-items:center;gap:15px;max-width:1400px;margin:0 auto 24px}
+.product-back-btn{background:#d4af37;color:#171717;border:0;border-radius:25px;padding:11px 19px;font-weight:bold;cursor:pointer}
+.product-detail-heading{text-align:center;margin:0 auto 28px}
+.product-detail-heading h2{color:#d4af37;font-size:clamp(27px,4vw,42px);margin:12px 0}
+.product-detail-heading p{color:#ddd}
+.product-detail-grid{max-width:1400px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.product-type-card{overflow:hidden;border:1px solid rgba(212,175,55,.45);border-radius:12px;background:#302e2a}
+.product-type-card img{width:100%;height:210px;object-fit:contain;background:#242321;display:block;padding:12px}
+.product-type-name{text-align:center;padding:15px;color:#f4ead0;font-weight:bold}
+.product-image-fallback{height:210px;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;color:#d4af37;background:#242321;font-weight:bold}
+
+@media(max-width:1100px){
+ header{padding:0 25px}
+ .logo-text{font-size:18px;letter-spacing:2px}
+ nav{gap:16px}
+ .product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:900px){
+ header{height:auto;min-height:82px;padding:12px 20px;flex-wrap:wrap;gap:12px;justify-content:center}
+ .logo-text{font-size:17px;letter-spacing:2px}
+ .logo-image{width:45px;height:45px}
+ nav{gap:15px;flex-wrap:wrap;justify-content:center}
+ nav a{font-size:12px}
+ .hero h1{font-size:42px}
+ .services-grid,.service-gallery{grid-template-columns:1fr}
+ .service-heading h2{font-size:35px}
+ .service-gallery img{height:280px}
+ .product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .products-intro h2{font-size:32px}
+}
+@media(max-width:520px){
+ .product-grid{grid-template-columns:1fr}
+ .product-card img{height:250px}
+ .hero h1{font-size:34px;letter-spacing:2px}
+ .hero p{font-size:16px}
+ section{padding:75px 6%}
+ .section-title h2{font-size:32px}
+ .about-box,.contact-box{padding:28px 20px}
+ .about-box h2,.contact-box h2{font-size:29px}
+ .product-detail-top{align-items:flex-start;flex-wrap:wrap}
+ .product-type-card img{height:180px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="logo-area">
+  <img src="logo.jpg.jpeg" class="logo-image" alt="PS Luxury Interiors Logo">
+  <div class="logo-text">PS LUXURY INTERIORS</div>
+ </div>
+ <nav>
+  <a href="#" onclick="showHome();return false;">HOME</a>
+  <a href="#services" onclick="showHome();">SERVICES</a>
+  <a href="#about" onclick="showHome();">ABOUT US</a>
+  <a href="#contact" onclick="showHome();">CONTACT</a>
+ </nav>
+</header>
+
+<div id="homePage">
+<section class="hero" id="home">
+ <h1>PS LUXURY INTERIORS</h1>
+ <div class="hero-line"></div>
+ <p>Transforming houses into elegant spaces with luxury interior designs, premium finishes and timeless creativity.</p>
+ <a href="#services" class="hero-btn">EXPLORE SERVICES</a>
+</section>
+
+<section class="products-section" id="products">
+ <div class="products-intro">
+  <h2>OUR INTERIOR PRODUCTS</h2>
+  <p>Explore our premium collection of decorative panels, wall cladding, ceiling solutions and folding doors.</p>
+ </div>
+
+ <div class="product-grid">
+
+  <div class="product-card"><div class="product-image-wrap"><img src="https://eezeeindia.com/wp-content/uploads/2024/02/WP-913.webp" alt="Fluted panels" loading="lazy"></div><div class="product-info"><h3>1. FLUTED PANELS</h3><ul><li>WPC Fluted Panel</li><li>PVC Fluted Panel</li><li>SOLID Fluted Panel</li><li>Charcoal Fluted Panel</li><li>Flexible Fluted Panel</li></ul><a class="product-btn" href="#productDetailPage" onclick="event.preventDefault();openProductDetail(0)">OPEN PAGE</a></div></div>
+
+  <div class="product-card"><div class="product-image-wrap"><img src="https://image.made-in-china.com/2f0j00iIYoTZjWaGuC/Wholesale-WPC-Louver-Wall-Panels-Interior-Wood-Building-Finishing-Materials.webp" alt="Louvers and slat panels" loading="lazy"></div><div class="product-info"><h3>2. LOUVERS &amp; SLAT PANELS</h3><ul><li>WPC Louver Panel</li><li>PVC Louver Panel</li><li>Aluminium Louver Panel</li><li>Acoustic Slat Panel</li></ul><a class="product-btn" href="#productDetailPage" onclick="event.preventDefault();openProductDetail(1)">OPEN PAGE</a></div></div>
+
+  <div class="product-card"><div class="product-image-wrap"><img src="https://image.made-in-china.com/2f0j00EiRhvqTMgJCG/High-Glossy-PVC-UV-Marble-Sheet-3mm-PVC-UV-Marble-Sheet-Manufacturer.jpg" alt="Marble sheets" loading="lazy"></div><div class="product-info"><h3>3. MARBLE SHEETS</h3><ul><li>UV Marble Sheet</li><li>SPC Marble Sheet</li><li>Flexible Marble Sheet</li><li>Acrylic Marble Sheet</li></ul><a class="product-btn" href="#productDetailPage" onclick="event.preventDefault();openProductDetail(2)">OPEN PAGE</a></div></div>
+
+  <div class="product-card"><div class="product-image-wrap"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKwesGMuIyiWkMycWzEyTZDKFMjcFG1Vyl2K8Kw054pA&s=10" alt="PVC panels" loading="lazy"></div><div class="product-info"><h3>4. PVC PANELS</h3><ul><li>PVC Wall Panel</li><li>PVC Ceiling Panel</li><li>PVC Decorative Sheet</li><li>PVC Foam Board</li><li>PVC 3D Panel</li></ul><a class="product-btn" href="#productDetailPage" onclick="event.preventDefault();openProductDetail(4)">OPEN PAGE</a></div></div>
+
+  <div class="product-card"><div class="product-image-wrap"><img src="https://img2.tradewheel.com/uploads/images/products/4/0/wpc-pvc-wall-cladding-interior-moisture-proof-wall-board-exterior-pe-spc-wall-panel-for-home-decoration2-0160723001733530411.jpg" alt="WPC panels" loading="lazy"></div><div class="product-info"><h3>5. WPC PANELS</h3><ul><li>WPC Wall Panel</li><li>WPC Cladding Panel</li><li>WPC Ceiling Panel</li><li>WPC 3D Panel</li><li>WPC Decorative Panel</li></ul><a class="product-btn" href="#productDetailPage" onclick="event.preventDefault();openProductDetail(5)">OPEN PAGE</a></div></div>
+
+  <div class="product-card"><div class="product-image-wrap"><img src="https://5.imimg.com/data5/SELLER/Default/2024/6/429117352/HE/VQ/WP/16597394/designer-mdf-3d-wall-panels.jpeg" alt="3D wall panels" loading="lazy"></div><div class="product-info"><h3>6. 3D WALL PANELS</h3><ul><li>PVC 3D Wall Panel</li><li>WPC 3D Wall Panel</li><li>MDF 3D Wall Panel</li><li>PU 3D Wall Panel</li></ul><a class="product-btn" href="#productDetailPage" onclick="event.preventDefault();openProductDetail(6)">OPEN PAGE</a></div></div>
+
+  <div class="product-card"><div class="product-image-wrap"><img src="https://m.media-amazon.com/images/I/71pumWCcdjL._AC_SY355_.jpg" alt="Folding doors" loading="lazy"></div><div class="product-info"><h3>7. FOLDING DOORS</h3><ul><li>PVC Folding Door</li><li>WPC Folding Door</li><li>Plastic Folding Door</li><li>Decorative Folding Door</li></ul><a class="product-btn" href="#productDetailPage" onclick="event.preventDefault();openProductDetail(7)">OPEN PAGE</a></div></div>
+
+  <div class="product-card"><div class="product-image-wrap"><img src="https://i.pinimg.com/736x/55/5f/8a/555f8a6bb1f5015fafca8700d5ae1a58.jpg" alt="Other decorative panels" loading="lazy"></div><div class="product-info"><h3>8. OTHER DECORATIVE PANELS</h3><ul><li>Acrylic Wall Panel</li><li>HPL Decorative Panel</li><li>Aluminium Wall Panel</li><li>Wooden Wall Panel</li><li>Flexible Stone Panel</li><li>PU Stone Panel</li></ul><a class="product-btn" href="#productDetailPage" onclick="event.preventDefault();openProductDetail(8)">OPEN PAGE</a></div></div>
+
+  <div class="product-card"><div class="product-image-wrap"><img src="https://furnitureredefined.in/cdn/shop/files/PVCCeiling12.jpg?v=1748253086&width=1445" alt="Soffit panels" loading="lazy"></div><div class="product-info"><h3>9. SOFFIT PANELS</h3><ul><li>PVC Ceiling Panel</li><li>WPC Ceiling Panel</li><li>Aluminium Ceiling Panel</li><li>Wooden Ceiling Panel</li></ul><a class="product-btn" href="#productDetailPage" onclick="event.preventDefault();openProductDetail(9)">OPEN PAGE</a></div></div>
+
+  <div class="product-card"><div class="product-image-wrap"><img src="https://i.pinimg.com/736x/bb/17/3f/bb173f612f6aed22e89e6d1cba76d8ff.jpg" alt="Wall cladding panels" loading="lazy"></div><div class="product-info"><h3>10. WALL CLADDING PANELS</h3><ul><li>WPC Wall Cladding Panel</li><li>PVC Wall Cladding Panel</li><li>Stone Cladding Panel</li><li>PU Stone Cladding Panel</li></ul><a class="product-btn" href="#productDetailPage" onclick="event.preventDefault();openProductDetail(10)">OPEN PAGE</a></div></div>
+
+ </div>
+</section>
+
+<section id="services">
+ <div class="section-title"><h2>OUR SERVICES</h2><p>Discover our premium interior design solutions.</p></div>
+ <div class="services-grid">
+  <div class="service-card" onclick="openService('custom')"><h3>CUSTOM INTERIOR WORK</h3><p>Bespoke interior solutions created according to your unique requirements.</p><div class="view-service">VIEW FULL PAGE</div></div>
+  <div class="service-card" onclick="openService('homeInterior')"><h3>COMPLETE HOME INTERIORS</h3><p>Complete interior solutions designed specifically for modern luxury homes.</p><div class="view-service">VIEW FULL PAGE</div></div>
+  <div class="service-card" onclick="openService('office')"><h3>OFFICE INTERIORS</h3><p>Professional and sophisticated workspaces designed for comfort and productivity.</p><div class="view-service">VIEW FULL PAGE</div></div>
+  <div class="service-card" onclick="openService('decorativeWall')"><h3>DECORATIVE WALL DESIGNS</h3><p>Stylish wall designs that add character, elegance and personality to your space.</p><div class="view-service">VIEW FULL PAGE</div></div>
+  <div class="service-card" onclick="openService('falseCeiling')"><h3>FALSE CEILINGS</h3><p>Elegant ceiling designs that give your interiors a luxurious and modern finish.</p><div class="view-service">VIEW FULL PAGE</div></div>
+ </div>
+</section>
+
+<section id="about"><div class="about-box"><h2>ABOUT PS LUXURY INTERIORS</h2><p>PS Luxury Interiors is dedicated to transforming ordinary spaces into elegant and sophisticated environments. We combine creativity, quality materials and modern design to create interiors that reflect individuality and timeless luxury.</p></div></section>
+
+<section id="contact"><div class="contact-box"><h2>CONTACT US</h2><p>Let's create your dream space together.</p><p><strong>Phone:</strong> +91 7428068526</p><p><strong>Email:</strong> <a href="mailto:psluxuryinteriors@gmail.com" style="color:#ddd;text-decoration:none">psluxuryinteriors@gmail.com</a></p></div></section>
+</div>
+
+<div class="service-page" id="custom"><div class="service-content"><a href="#" class="service-back" onclick="showHome();return false">← BACK TO SERVICES</a><div class="service-heading"><h2>CUSTOM INTERIOR WORK</h2><p>Unique interior solutions created around your ideas, requirements and space, ensuring every detail feels personal and thoughtfully designed.</p></div><div class="service-gallery"><img src="custom-interior-1.jpg" alt="Custom Interior 1"><img src="custom-interior-2.jpg" alt="Custom Interior 2"><img src="custom-interior-3.jpg" alt="Custom Interior 3"></div></div></div>
+
+<div class="service-page" id="homeInterior"><div class="service-content"><a href="#" class="service-back" onclick="showHome();return false">← BACK TO SERVICES</a><div class="service-heading"><h2>COMPLETE HOME INTERIORS</h2><p>Complete interior solutions that bring together comfort, functionality and luxury to create a beautiful home designed around your lifestyle.</p></div><div class="service-gallery"><img src="home-interior-1.jpg" alt="Home Interior 1"><img src="home-interior-2.jpg" alt="Home Interior 2"><img src="home-interior-3.jpg" alt="Home Interior 3"></div></div></div>
+
+<div class="service-page" id="office"><div class="service-content"><a href="#" class="service-back" onclick="showHome();return false">← BACK TO SERVICES</a><div class="service-heading"><h2>OFFICE INTERIORS</h2><p>Sophisticated office interiors designed to create professional, comfortable and productive workspaces with a refined modern aesthetic.</p></div><div class="service-gallery"><img src="office-interior-1.jpg" alt="Office Interior 1"><img src="office-interior-2.jpg" alt="Office Interior 2"><img src="office-interior-3.jpg" alt="Office Interior 3"></div></div></div>
+
+<div class="service-page" id="decorativeWall"><div class="service-content"><a href="#" class="service-back" onclick="showHome();return false">← BACK TO SERVICES</a><div class="service-heading"><h2>DECORATIVE WALL DESIGNS</h2><p>Transform your walls into statement features with elegant textures, patterns and premium finishes designed to give your interiors a distinctive look.</p></div><div class="service-gallery"><img src="decorative-wall-1.jpg" alt="Decorative Wall Design 1"><img src="decorative-wall-2.jpg" alt="Decorative Wall Design 2"><img src="decorative-wall-3.jpg" alt="Decorative Wall Design 3"></div></div></div>
+
+<div class="service-page" id="falseCeiling"><div class="service-content"><a href="#" class="service-back" onclick="showHome();return false">← BACK TO SERVICES</a><div class="service-heading"><h2>FALSE CEILINGS</h2><p>Our false ceiling designs bring depth, elegance and a premium architectural finish to your interiors. Every design is carefully planned to complement the overall character of the space.</p></div><div class="service-gallery"><img src="false-ceiling-1.jpg" alt="False Ceiling Design 1"><img src="false-ceiling-2.jpg" alt="False Ceiling Design 2"><img src="false-ceiling-3.jpg" alt="False Ceiling Design 3"></div></div></div>
+
+<footer>© 2026 PS Luxury Interiors. All Rights Reserved.</footer>
+
+<div id="productDetailPage" aria-live="polite">
+ <div class="product-detail-top"><button class="product-back-btn" onclick="closeProductDetail()" type="button">← BACK TO PRODUCTS</button><strong style="color:#d4af37;letter-spacing:1px">PS LUXURY INTERIORS</strong></div>
+ <div class="product-detail-heading"><h2 id="productDetailTitle">PRODUCT COLLECTION</h2><p>Product reference images. Please confirm the exact finish and shade before ordering.</p></div>
+ <div class="product-detail-grid" id="productDetailGrid"></div>
+</div>
+
+<script>
+function openService(serviceId){
+ document.getElementById("homePage").style.display="none";
+ document.querySelectorAll(".service-page").forEach(page=>page.classList.remove("active"));
+ document.getElementById(serviceId).classList.add("active");
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function showHome(){
+ document.querySelectorAll(".service-page").forEach(page=>page.classList.remove("active"));
+ document.getElementById("homePage").style.display="block";
+ closeProductDetail();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+const productCollections=[
+ {title:'Fluted Panels',items:['WPC Fluted Panel','PVC Fluted Panel','SOLID Fluted Panel','Charcoal Fluted Panel','Flexible Fluted Panel']},
+ {title:'Louvers & Slat Panels',items:['WPC Louver Panel','PVC Louver Panel','Aluminium Louver Panel','Acoustic Slat Panel']},
+ {title:'Marble Sheets',items:['UV Marble Sheet','SPC Marble Sheet','Flexible Marble Sheet','Acrylic Marble Sheet']},
+ {title:'Charcoal Panels',items:['Charcoal Wall Panel','Charcoal Fluted Panel','Charcoal Louvers','Charcoal Groove Panel']},
+ {title:'PVC Panels',items:['PVC Wall Panel','PVC Ceiling Panel','PVC Decorative Sheet','PVC Foam Board','PVC 3D Panel']},
+ {title:'WPC Panels',items:['WPC Wall Panel','WPC Cladding Panel','WPC Ceiling Panel','WPC 3D Panel','WPC Decorative Panel']},
+ {title:'3D Wall Panels',items:['PVC 3D Wall Panel','WPC 3D Wall Panel','MDF 3D Wall Panel','PU 3D Wall Panel']},
+ {title:'Folding Doors',items:['PVC Folding Door','WPC Folding Door','Plastic Folding Door','Decorative Folding Door']},
+ {title:'Other Decorative Panels',items:['Acrylic Wall Panel','HPL Decorative Panel','Aluminium Wall Panel','Wooden Wall Panel','Flexible Stone Panel','PU Stone Panel']},
+ {title:'SOFFIT PANELS',items:['PVC Ceiling Panel','WPC Ceiling Panel','Aluminium Ceiling Panel','Wooden Ceiling Panel']},
+ {title:'Wall Cladding Panels',items:['WPC Wall Cladding Panel','PVC Wall Cladding Panel','Stone Cladding Panel','PU Stone Cladding Panel']}
+];
+
+function openProductDetail(index){
+ const collection=productCollections[index];
+ if(!collection)return;
+
+ document.getElementById("productDetailTitle").textContent=collection.title;
+ const grid=document.getElementById("productDetailGrid");
+ grid.innerHTML="";
+
+ collection.items.forEach(function(name){
+  const article=document.createElement("article");
+  article.className="product-type-card";
+
+  const img=document.createElement("img");
+  img.alt=name+" product image";
+  img.loading="lazy";
+
+  // Each product gets a query based on its own name.
+  const query=encodeURIComponent(name+" product material sample close up");
+  img.src="https://tse1.mm.bing.net/th?q="+query+"&w=600&h=400&c=7&rs=1&p=0";
+
+  const title=document.createElement("div");
+  title.className="product-type-name";
+  title.textContent=name;
+
+  img.onerror=function(){
+   img.style.display="none";
+   const fallback=document.createElement("div");
+   fallback.className="product-image-fallback";
+   fallback.textContent=name+" — image unavailable";
+   article.insertBefore(fallback,title);
+  };
+
+  article.appendChild(img);
+  article.appendChild(title);
+  grid.appendChild(article);
+ });
+
+ document.getElementById("productDetailPage").classList.add("active");
+ document.body.style.overflow="hidden";
+}
+
+function closeProductDetail(){
+ document.getElementById("productDetailPage").classList.remove("active");
+ document.body.style.overflow="";
+}
+</script>
+</body>
+</html>
